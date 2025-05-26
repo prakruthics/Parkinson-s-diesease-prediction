@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Parkinson's Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            background-image: url("{{ url_for('static', filename='background.jpeg') }}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Parkinson's Disease Prediction</h1>
+        
+        <!-- Prediction form with 7 input fields -->
+        <form action="/predict" method="POST">
+            <div class="input-group">
+                <label for="f0">Average Vocal Frequency (Hz):</label>
+                <input type="number" step="any" name="f0" placeholder="Enter Value" required><br>
+            </div>
+            <div class="input-group">
+                <label for="f1">Maximum Vocal Frequency (Hz):</label>
+                <input type="number" step="any" name="f1" placeholder="Enter Value" required><br>
+            </div>
+            <div class="input-group">
+                <label for="f2">Minimum Vocal Frequency (Hz):</label>
+                <input type="number" step="any" name="f2" placeholder="Enter Value" required><br>
+            </div>
+            <div class="input-group">
+                <label for="f3">Voice Frequency Variation (%):</label>
+                <input type="number" step="any" name="f3" placeholder="Enter Value" required><br>
+            </div>
+            <div class="input-group">
+                <label for="f4">Absolute Voice Jitter:</label>
+                <input type="number" step="any" name="f4" placeholder="Enter Value" required><br>
+            </div>
+            <div class="input-group">
+                <label for="f5">Relative Amplitude Perturbation:</label>
+                <input type="number" step="any" name="f5" placeholder="Enter Value" required><br>
+            </div>
+            <div class="input-group">
+                <label for="f6">Pitch Period Perturbation:</label>
+                <input type="number" step="any" name="f6" placeholder="Enter Value" required><br>
+            </div>
+            
+            <button type="submit">Predict</button>
+        </form>
+
+        <!-- Show prediction result below the form -->
+        {% if prediction %}
+            <div class="prediction">
+                <h2>Prediction Result: {{ prediction }}</h2>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
+
